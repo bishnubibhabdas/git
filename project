@@ -1,0 +1,34 @@
+package com.devops.training;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Base64;
+
+ 
+
+ 
+
+public class jenkinsrun {
+    
+    public static void main(String[] args) throws IOException {
+
+URL obj = new URL ("JENKINS URL OF THE JOB");
+String user = "JENKINS USERNAME"; 
+String pass = "API TOKEN"; 
+String authStr = user + ":" + pass;
+String encoding = Base64.getEncoder().encodeToString(authStr.getBytes("utf-8"));
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+con.setDoOutput(true);
+con.setRequestProperty("Authorization", "Basic " + encoding);
+System.out.println("Done :: "+con.getResponseCode());
+con.disconnect();
+}
+
+
+
+
+
+
+}
